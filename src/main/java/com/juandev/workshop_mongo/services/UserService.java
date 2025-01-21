@@ -21,11 +21,11 @@ public class UserService {
     }
 
     public User findById(String id) {
-        User user = repository.findOne(id);
-        if (user == null) {
+        Optional<User> user = repository.findById(id);
+        if (user.get() == null) {
             throw new ObjectNotFoundException("Object not found!");
         }
-        return user;
+        return user.get();
     }
 
     public User insert(User user) {
